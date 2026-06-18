@@ -57,11 +57,13 @@ export const SITE_CONFIG = {
   tagline: "Rwanda's Trusted IT Hardware & Electronics Partner",
   description:
     "Rwanda's leading IT hardware supplier — laptops, smartphones, networking, servers, and accessories. Genuine products with expert support across Kigali and nationwide.",
-  phone: "+250 788 123 456",
-  email: "hello@itzone.rw",
-  supportEmail: "support@itzone.rw",
+  phone: "+971 56 530 7853",
+  email: "Info@itzone.rw",
+  supportEmail: "Info@itzone.rw",
+  quotationEmail: "Info@itzone.rw",
   address: "KG 7 Ave, Kigali City Tower, Kigali, Rwanda",
-  whatsapp: "+250788123456",
+  whatsapp: "+971565307853",
+  quotationWhatsapp: "+971565307853",
   country: "Rwanda",
   currency: "RWF",
   hours: {

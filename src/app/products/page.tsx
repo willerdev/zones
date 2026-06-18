@@ -106,7 +106,7 @@ function ProductsContent() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Products</h1>
+        <h1 className="text-xl md:text-3xl font-bold">Products</h1>
         <p className="text-muted-foreground mt-1">
           {filteredProducts.length} products available
         </p>

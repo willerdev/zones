@@ -22,7 +22,7 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-2">Quote List</h1>
+      <h1 className="text-xl md:text-3xl font-bold mb-2">Quote List</h1>
       <p className="text-muted-foreground mb-8">{itemCount} product{itemCount === 1 ? "" : "s"} selected for quotation</p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

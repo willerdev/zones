@@ -113,7 +113,7 @@ export default function ProductDetailClient({ slug }: { slug: string }) {
 
         <div>
           <p className="text-sm font-medium text-primary uppercase tracking-wider">{product.brand}</p>
-          <h1 className="text-3xl font-bold mt-1">{product.name}</h1>
+          <h1 className="text-xl md:text-3xl font-bold mt-1">{product.name}</h1>
           <StarRating rating={product.rating} showValue reviewCount={product.reviewCount} size="md" className="mt-3" />
 
           <div className="flex items-center gap-3 mt-4">
@@ -173,7 +173,7 @@ export default function ProductDetailClient({ slug }: { slug: string }) {
       </div>
 
       <div className="mt-10 lg:mt-16">
-        <h2 className="text-xl font-bold mb-4">Product Details</h2>
+        <h2 className="text-base md:text-xl font-bold mb-3 md:mb-4">Product Details</h2>
         <SpecsTable specs={product.specs} description={product.description} />
       </div>
 

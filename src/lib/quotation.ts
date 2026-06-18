@@ -51,7 +51,7 @@ export function getWhatsAppQuotationUrl(
   items: CartItem[],
   contact: QuotationContact
 ): string {
-  const phone = SITE_CONFIG.whatsapp.replace(/[^0-9]/g, "");
+  const phone = (SITE_CONFIG.quotationWhatsapp ?? SITE_CONFIG.whatsapp).replace(/[^0-9]/g, "");
   const text = encodeURIComponent(buildQuotationMessage(items, contact));
   return `https://wa.me/${phone}?text=${text}`;
 }
@@ -64,5 +64,6 @@ export function getEmailQuotationUrl(
     `Quotation Request from ${contact.name.trim()} - ${contact.company.trim()}`
   );
   const body = encodeURIComponent(buildQuotationMessage(items, contact));
-  return `mailto:${SITE_CONFIG.email}?subject=${subject}&body=${body}`;
+  const email = SITE_CONFIG.quotationEmail ?? SITE_CONFIG.email;
+  return `mailto:${email}?subject=${subject}&body=${body}`;
 }

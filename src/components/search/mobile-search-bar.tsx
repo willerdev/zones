@@ -60,7 +60,7 @@ export function MobileSearchBar() {
             onFocus={() => setFocused(true)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             placeholder="Search ITZONE"
-            className="w-full h-10 pl-9 pr-3 text-sm bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
+            className="w-full h-9 md:h-10 pl-9 pr-3 text-xs md:text-sm bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
             autoComplete="off"
           />
           {query && (

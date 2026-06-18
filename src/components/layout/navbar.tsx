@@ -96,7 +96,7 @@ export function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold tracking-tight uppercase">
+            <span className="text-base md:text-xl font-bold tracking-tight uppercase">
               {SITE_CONFIG.name}
             </span>
           </Link>

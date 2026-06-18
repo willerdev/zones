@@ -112,7 +112,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-bold">Featured Products</h2>
+              <h2 className="text-lg md:text-3xl font-bold">Featured Products</h2>
               <p className="mt-2 text-muted-foreground">Hand-picked top deals for you</p>
             </div>
             <Button variant="outline" asChild className="hidden sm:flex">
