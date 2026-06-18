@@ -291,7 +291,10 @@ const CATALOG: CatalogEntry[] = [
     ["Cisco Catalyst 9200 24-Port", 1850000],
     ["Cisco ISR 4331 Router", 1250000],
     ["Cisco Meraki MR46 AP", 485000],
-  ].map(([name, price]) => network(name.startsWith("D-Link") ? "D-Link" : "Cisco", name as string, price as number)),
+  ].map(([name, price]) => {
+    const productName = name as string;
+    return network(productName.startsWith("D-Link") ? "D-Link" : "Cisco", productName, price as number);
+  }),
 
   // Servers
   ...[
@@ -304,7 +307,10 @@ const CATALOG: CatalogEntry[] = [
     ["Dell PowerEdge R750", 14500000],
     ["Dell PowerEdge R760", 16800000],
     ["Dell PowerEdge R660", 12800000],
-  ].map(([name, price]) => server(name.startsWith("HPE") ? "HPE" : "Dell", name as string, price as number)),
+  ].map(([name, price]) => {
+    const productName = name as string;
+    return server(productName.startsWith("HPE") ? "HPE" : "Dell", productName, price as number);
+  }),
 
   // Computer Accessories
   accessory("HP USB-C Dock G5", "HP", 185000, "Docking Station"),
