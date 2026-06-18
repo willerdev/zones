@@ -2,14 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, ShoppingCart, Trash2 } from "lucide-react";
+import { Heart, FileText, Trash2 } from "lucide-react";
 import { useWishlist } from "@/context/wishlist-context";
 import { useCart } from "@/context/cart-context";
-import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 
 export default function WishlistPage() {
-  const { formatPrice } = useLocale();
   const { items, removeItem } = useWishlist();
   const { addItem } = useCart();
 
@@ -37,10 +35,10 @@ export default function WishlistPage() {
               <Link href={`/products/${product.slug}`} className="font-semibold hover:text-primary transition-colors">
                 {product.name}
               </Link>
-              <p className="font-bold mt-2">{formatPrice(product.discountPrice ?? product.price)}</p>
+              <p className="text-sm text-primary font-medium mt-2">Get Quotation</p>
               <div className="flex gap-2 mt-4">
                 <Button size="sm" className="flex-1" onClick={() => addItem(product)}>
-                  <ShoppingCart className="h-4 w-4" /> Add to Cart
+                  <FileText className="h-4 w-4" /> Add to Quote List
                 </Button>
                 <Button size="sm" variant="outline" onClick={() => removeItem(product.id)}>
                   <Trash2 className="h-4 w-4" />

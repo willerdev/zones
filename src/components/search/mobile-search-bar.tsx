@@ -6,13 +6,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search, X, TrendingUp } from "lucide-react";
 import { PRODUCTS, CATEGORIES } from "@/lib/data";
-import { useLocale } from "@/context/locale-context";
 
 const TRENDING = ["MacBook Pro", "iPhone 16", "HP EliteBook", "Samsung Galaxy S24", "Ubiquiti"];
 
 export function MobileSearchBar() {
   const router = useRouter();
-  const { formatPrice } = useLocale();
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -138,7 +136,7 @@ export function MobileSearchBar() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium line-clamp-1">{product.name}</p>
-                        <p className="text-xs text-muted-foreground">{product.brand} · {formatPrice(product.discountPrice ?? product.price)}</p>
+                        <p className="text-xs text-muted-foreground">{product.brand} · Get Quotation</p>
                       </div>
                     </Link>
                   </li>

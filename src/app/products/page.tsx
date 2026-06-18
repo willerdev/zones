@@ -7,7 +7,6 @@ import {
   SlidersHorizontal, Grid3X3, List, GitCompareArrows, Building2, X,
 } from "lucide-react";
 import { PRODUCTS, BRANDS, CATEGORIES } from "@/lib/data";
-import { useLocale } from "@/context/locale-context";
 import { ProductCard } from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,7 +16,6 @@ import { cn } from "@/lib/utils";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
-  const { formatPrice } = useLocale();
   const { items: compareItems } = useCompare();
   const [search, setSearch] = useState(searchParams.get("q") || "");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -202,9 +200,7 @@ function ProductsContent() {
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-2 block">
-                Price Range: {formatPrice(priceRange[0])} - {formatPrice(priceRange[1])}
-              </label>
+              <label className="text-sm font-medium mb-2 block">Price Range (RWF)</label>
               <div className="flex gap-2">
                 <Input
                   type="number"

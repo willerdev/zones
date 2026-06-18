@@ -2,15 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { X, ShoppingCart } from "lucide-react";
+import { X, FileText } from "lucide-react";
 import { useCompare } from "@/context/compare-context";
 import { useCart } from "@/context/cart-context";
-import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 import { StarRating } from "@/components/ui/star-rating";
 
 export default function ComparePage() {
-  const { formatPrice } = useLocale();
   const { items, removeItem, clearAll } = useCompare();
   const { addItem } = useCart();
 
@@ -52,9 +50,9 @@ export default function ComparePage() {
                     {product.name}
                   </Link>
                   <StarRating rating={product.rating} className="justify-center mt-2" />
-                  <p className="text-lg font-bold mt-2">{formatPrice(product.discountPrice ?? product.price)}</p>
+                  <p className="text-sm text-primary font-medium mt-2">Get Quotation</p>
                   <Button size="sm" className="mt-3" onClick={() => addItem(product)}>
-                    <ShoppingCart className="h-4 w-4" /> Add to Cart
+                    <FileText className="h-4 w-4" /> Add to Quote List
                   </Button>
                 </th>
               ))}

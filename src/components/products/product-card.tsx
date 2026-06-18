@@ -2,11 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, ShoppingCart, Eye, GitCompareArrows } from "lucide-react";
+import { Heart, FileText, Eye, GitCompareArrows } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/data";
-import { calculateDiscount } from "@/lib/utils";
-import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StarRating } from "@/components/ui/star-rating";
@@ -21,11 +19,9 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const { formatPrice } = useLocale();
   const { addItem } = useCart();
   const { isInWishlist, toggleItem } = useWishlist();
   const { isInCompare, toggleItem: toggleCompare } = useCompare();
-  const discount = calculateDiscount(product.price, product.discountPrice);
   const inWishlist = isInWishlist(product.id);
   const inCompare = isInCompare(product.id);
 
@@ -50,12 +46,6 @@ export function ProductCard({ product, className }: ProductCardProps) {
           />
         </Link>
 
-        {discount > 0 && (
-          <Badge className="absolute left-2 top-2 sm:left-3 sm:top-3 bg-red-500 text-white border-0 text-[10px] sm:text-xs px-1.5 sm:px-2.5">
-            -{discount}%
-          </Badge>
-        )}
-
         {product.availability === "LOW_STOCK" && (
           <Badge variant="outline" className="absolute right-2 top-2 sm:right-3 sm:top-3 bg-background/80 backdrop-blur-sm text-[10px] sm:text-xs hidden sm:inline-flex">
             Low Stock
@@ -68,8 +58,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
             className="flex-1"
             onClick={() => addItem(product)}
           >
-            <ShoppingCart className="h-4 w-4" />
-            Add to Cart
+            <FileText className="h-4 w-4" />
+            Add to Quote List
           </Button>
           <Button size="sm" variant="secondary" asChild>
             <Link href={`/products/${product.slug}`}>
@@ -112,29 +102,16 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </h3>
         </Link>
         <StarRating rating={product.rating} reviewCount={product.reviewCount} className="mt-1 sm:mt-2 hidden sm:flex" />
-        <div className="mt-auto flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2 pt-2 sm:pt-3">
-          {product.discountPrice ? (
-            <>
-              <span className="text-sm sm:text-lg font-bold text-foreground">
-                {formatPrice(product.discountPrice)}
-              </span>
-              <span className="text-[10px] sm:text-sm text-muted-foreground line-through">
-                {formatPrice(product.price)}
-              </span>
-            </>
-          ) : (
-            <span className="text-sm sm:text-lg font-bold text-foreground">
-              {formatPrice(product.price)}
-            </span>
-          )}
-        </div>
+        <p className="mt-auto pt-2 sm:pt-3 text-xs sm:text-sm font-medium text-primary">
+          Get Quotation
+        </p>
         <Button
           size="sm"
           className="mt-2 w-full sm:hidden h-8 text-xs"
           onClick={() => addItem(product)}
         >
-          <ShoppingCart className="h-3.5 w-3.5" />
-          Add
+          <FileText className="h-3.5 w-3.5" />
+          Add to List
         </Button>
       </div>
     </motion.div>
