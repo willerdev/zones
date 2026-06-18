@@ -10,7 +10,8 @@ import {
 } from "lucide-react";
 import type { Product } from "@/lib/product-types";
 import { getProductBySlug, PRODUCTS } from "@/lib/data";
-import { formatPrice, calculateDiscount } from "@/lib/utils";
+import { calculateDiscount } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StarRating } from "@/components/ui/star-rating";
@@ -21,6 +22,7 @@ import { useCompare } from "@/context/compare-context";
 import { cn } from "@/lib/utils";
 
 export default function ProductDetailClient({ slug }: { slug: string }) {
+  const { formatPrice } = useLocale();
   const product = getProductBySlug(slug);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);

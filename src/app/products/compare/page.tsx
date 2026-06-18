@@ -5,11 +5,12 @@ import Link from "next/link";
 import { X, ShoppingCart } from "lucide-react";
 import { useCompare } from "@/context/compare-context";
 import { useCart } from "@/context/cart-context";
-import { formatPrice } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 import { StarRating } from "@/components/ui/star-rating";
 
 export default function ComparePage() {
+  const { formatPrice } = useLocale();
   const { items, removeItem, clearAll } = useCompare();
   const { addItem } = useCart();
 

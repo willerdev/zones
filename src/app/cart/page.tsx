@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/cart-context";
-import { formatPrice } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 
 export default function CartPage() {
+  const { formatPrice } = useLocale();
   const { items, updateQuantity, removeItem, subtotal, itemCount } = useCart();
   const shipping = subtotal >= 200000 ? 0 : 5000;
   const total = subtotal + shipping;

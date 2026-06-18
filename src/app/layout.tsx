@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers";
 import { CartProvider } from "@/context/cart-context";
 import { WishlistProvider } from "@/context/wishlist-context";
 import { CompareProvider } from "@/context/compare-context";
+import { LocaleProvider } from "@/context/locale-context";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SITE_CONFIG } from "@/lib/data";
@@ -58,15 +59,17 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased">
         <SessionProvider>
           <ThemeProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <CompareProvider>
-                  <Navbar />
-                  <main className="flex-1 pt-16 lg:pt-20">{children}</main>
-                  <Footer />
-                </CompareProvider>
-              </WishlistProvider>
-            </CartProvider>
+            <LocaleProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  <CompareProvider>
+                    <Navbar />
+                    <main className="flex-1 pt-[7.5rem] lg:pt-20">{children}</main>
+                    <Footer />
+                  </CompareProvider>
+                </WishlistProvider>
+              </CartProvider>
+            </LocaleProvider>
           </ThemeProvider>
         </SessionProvider>
       </body>

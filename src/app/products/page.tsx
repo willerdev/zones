@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useMemo, Suspense } from "react";
+import { useState, useMemo, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   SlidersHorizontal, Grid3X3, List, GitCompareArrows, Building2, X,
 } from "lucide-react";
 import { PRODUCTS, BRANDS, CATEGORIES } from "@/lib/data";
-import { formatPrice } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { ProductCard } from "@/components/products/product-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,8 +17,9 @@ import { cn } from "@/lib/utils";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
+  const { formatPrice } = useLocale();
   const { items: compareItems } = useCompare();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("q") || "");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || ""
@@ -30,6 +31,11 @@ function ProductsContent() {
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const showBulk = searchParams.get("bulk") === "true";
+
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q) setSearch(q);
+  }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
     let result = [...PRODUCTS];

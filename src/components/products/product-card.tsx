@@ -5,7 +5,8 @@ import Link from "next/link";
 import { Heart, ShoppingCart, Eye, GitCompareArrows } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/data";
-import { formatPrice, calculateDiscount } from "@/lib/utils";
+import { calculateDiscount } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StarRating } from "@/components/ui/star-rating";
@@ -20,6 +21,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
+  const { formatPrice } = useLocale();
   const { addItem } = useCart();
   const { isInWishlist, toggleItem } = useWishlist();
   const { isInCompare, toggleItem: toggleCompare } = useCompare();

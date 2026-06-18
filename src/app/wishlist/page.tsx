@@ -5,10 +5,11 @@ import Link from "next/link";
 import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 import { useWishlist } from "@/context/wishlist-context";
 import { useCart } from "@/context/cart-context";
-import { formatPrice } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { Button } from "@/components/ui/button";
 
 export default function WishlistPage() {
+  const { formatPrice } = useLocale();
   const { items, removeItem } = useWishlist();
   const { addItem } = useCart();
 

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CreditCard, Lock, CheckCircle } from "lucide-react";
 import { useCart } from "@/context/cart-context";
-import { formatPrice, generateOrderNumber } from "@/lib/utils";
+import { generateOrderNumber } from "@/lib/utils";
+import { useLocale } from "@/context/locale-context";
 import { COUPONS } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +19,7 @@ const PAYMENT_METHODS = [
 ];
 
 export default function CheckoutPage() {
+  const { formatPrice } = useLocale();
   const { items, subtotal, clearCart } = useCart();
   const router = useRouter();
   const [step, setStep] = useState(1);

@@ -15,7 +15,52 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/cart-context";
 import { useWishlist } from "@/context/wishlist-context";
 import { useCompare } from "@/context/compare-context";
+import { useLocale } from "@/context/locale-context";
+import { MobileSearchBar } from "@/components/search/mobile-search-bar";
+import { CURRENCIES, type CurrencyCode } from "@/lib/currencies";
 import { cn } from "@/lib/utils";
+
+function CurrencySelector() {
+  const [open, setOpen] = useState(false);
+  const { currency, setCurrency, country, detecting } = useLocale();
+
+  if (detecting) return null;
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-0.5 px-2 py-1 text-xs font-semibold rounded-md bg-muted hover:bg-accent transition-colors"
+        aria-label="Change currency"
+      >
+        {currency}
+        <ChevronDown className="h-3 w-3" />
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 top-full mt-1 z-50 w-44 rounded-xl border border-border bg-background shadow-lg py-1">
+            <p className="px-3 py-1.5 text-[10px] text-muted-foreground truncate">
+              Detected: {country}
+            </p>
+            {(Object.keys(CURRENCIES) as CurrencyCode[]).map((code) => (
+              <button
+                key={code}
+                onClick={() => { setCurrency(code); setOpen(false); }}
+                className={cn(
+                  "w-full text-left px-3 py-2 text-sm hover:bg-muted transition-colors",
+                  currency === code && "text-primary font-medium"
+                )}
+              >
+                {code} — {CURRENCIES[code].label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,11 +95,8 @@ export function Navbar() {
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between lg:h-20">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-sm">
-              IT
-            </div>
-            <span className="text-xl font-bold tracking-tight">
+          <Link href="/" className="flex items-center">
+            <span className="text-xl font-bold tracking-tight uppercase">
               {SITE_CONFIG.name}
             </span>
           </Link>
@@ -72,6 +114,8 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
+            <CurrencySelector />
+
             <Button variant="ghost" size="icon" className="hidden sm:flex" asChild>
               <Link href="/products?search=true">
                 <Search className="h-5 w-5" />
@@ -141,6 +185,8 @@ export function Navbar() {
         </div>
       </nav>
 
+      <MobileSearchBar />
+
       <AnimatePresence>
         {isOpen && (
           <>
@@ -148,7 +194,7 @@ export function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 top-16 bg-background/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 top-[7.5rem] bg-background/60 backdrop-blur-sm lg:hidden"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
@@ -156,7 +202,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-16 bottom-0 w-80 max-w-[85vw] bg-background border-l border-border shadow-2xl lg:hidden overflow-y-auto"
+              className="fixed right-0 top-[7.5rem] bottom-0 w-80 max-w-[85vw] bg-background border-l border-border shadow-2xl lg:hidden overflow-y-auto"
             >
               <div className="flex flex-col p-6 gap-1">
                 {NAV_LINKS.map((link, i) => (
