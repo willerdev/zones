@@ -6,13 +6,19 @@ const SITE_URL =
 
 export interface QuotationContact {
   name: string;
+  email: string;
   company: string;
   location: string;
+}
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 }
 
 export function isQuotationContactValid(contact: QuotationContact): boolean {
   return (
     contact.name.trim().length > 0 &&
+    isValidEmail(contact.email) &&
     contact.company.trim().length > 0 &&
     contact.location.trim().length > 0
   );
@@ -38,6 +44,7 @@ export function buildQuotationMessage(
     ...productLines,
     "My details:",
     `Name: ${contact.name.trim()}`,
+    `Email: ${contact.email.trim()}`,
     `Company: ${contact.company.trim()}`,
     `Company Location: ${contact.location.trim()}`,
     "",

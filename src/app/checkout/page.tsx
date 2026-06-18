@@ -13,6 +13,7 @@ import type { QuotationContact } from "@/lib/quotation";
 
 const EMPTY_CONTACT: QuotationContact = {
   name: "",
+  email: "",
   company: "",
   location: "",
 };
@@ -86,6 +87,19 @@ export default function CheckoutPage() {
               placeholder="e.g. Jean Baptiste Nkurunziza"
               value={contact.name}
               onChange={(e) => updateContact("name", e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="quote-email" className="text-sm font-medium mb-1.5 block">
+              Email <span className="text-destructive">*</span>
+            </label>
+            <Input
+              id="quote-email"
+              type="email"
+              placeholder="e.g. you@company.com"
+              value={contact.email}
+              onChange={(e) => updateContact("email", e.target.value)}
               required
             />
           </div>
