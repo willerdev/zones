@@ -317,7 +317,7 @@ function ProductsContent() {
           ) : (
             <div className={cn(
               viewMode === "grid"
-                ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+                ? "grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6"
                 : "flex flex-col gap-4"
             )}>
               {filteredProducts.map((product) => (
