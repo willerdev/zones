@@ -163,8 +163,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20">
+      {/* Testimonials — desktop only */}
+      <section className="hidden md:block py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold">What Our Customers Say</h2>
@@ -174,8 +174,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-20">
+      {/* Newsletter — desktop only */}
+      <section className="hidden md:block py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <NewsletterSection />
         </div>
