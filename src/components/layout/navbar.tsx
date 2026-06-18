@@ -194,7 +194,7 @@ export function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 top-[7.5rem] bg-background/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 top-[7rem] bg-background/60 backdrop-blur-sm lg:hidden"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
@@ -202,7 +202,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-[7.5rem] bottom-0 w-80 max-w-[85vw] bg-background border-l border-border shadow-2xl lg:hidden overflow-y-auto"
+              className="fixed right-0 top-[7rem] bottom-0 w-80 max-w-[85vw] bg-background border-l border-border shadow-2xl lg:hidden overflow-y-auto"
             >
               <div className="flex flex-col p-6 gap-1">
                 {NAV_LINKS.map((link, i) => (

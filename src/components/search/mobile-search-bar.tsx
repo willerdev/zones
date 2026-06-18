@@ -50,7 +50,7 @@ export function MobileSearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative lg:hidden border-b border-border/50 bg-primary px-3 py-2.5">
+    <div ref={containerRef} className="relative lg:hidden border-b border-border/50 bg-primary px-3 py-1.5">
       <div className="relative flex">
         <div className="relative flex-1 flex items-center bg-background rounded-l-lg overflow-hidden">
           <Search className="absolute left-3 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -87,10 +87,10 @@ export function MobileSearchBar() {
       {showPanel && (
         <>
           <div
-            className="fixed inset-0 top-[7.5rem] z-40 bg-black/30"
+            className="fixed inset-0 top-[7rem] z-40 bg-black/30"
             onClick={() => setFocused(false)}
           />
-          <div className="fixed left-0 right-0 top-[7.5rem] z-50 bg-background border-b border-border shadow-xl max-h-[70vh] overflow-y-auto">
+          <div className="fixed left-0 right-0 top-[7rem] z-50 bg-background border-b border-border shadow-xl max-h-[70vh] overflow-y-auto">
           <div className="px-3 py-3">
             {!query && (
               <>

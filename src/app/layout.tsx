@@ -64,7 +64,7 @@ export default function RootLayout({
                 <WishlistProvider>
                   <CompareProvider>
                     <Navbar />
-                    <main className="flex-1 pt-[7.5rem] lg:pt-20">{children}</main>
+                    <main className="flex-1 pt-[7rem] lg:pt-20">{children}</main>
                     <Footer />
                   </CompareProvider>
                 </WishlistProvider>

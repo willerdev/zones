@@ -70,24 +70,23 @@ export default function HomePage() {
       </section>
 
       {/* Categories */}
-      <section className="py-20 bg-muted/30">
+      <section className="pt-3 pb-8 md:py-20 bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Shop by Category</h2>
-            <p className="mt-2 text-muted-foreground">Explore our wide range of technology products</p>
+          <div className="text-center mb-4 md:mb-12">
+            <h2 className="text-lg md:text-3xl font-bold">Shop by Category</h2>
+            <p className="mt-1 text-xs md:text-base text-muted-foreground hidden sm:block">Explore our wide range of technology products</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
             {CATEGORIES.map((cat, i) => (
               <motion.div
                 key={cat.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.03, duration: 0.25 }}
               >
                 <Link
                   href={`/products?category=${cat.slug}`}
-                  className="group relative block overflow-hidden rounded-2xl aspect-[4/3] border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300"
+                  className="group relative block overflow-hidden rounded-xl md:rounded-2xl aspect-[5/4] md:aspect-[4/3] border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300"
                 >
                   <Image
                     src={cat.image}
@@ -97,9 +96,9 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white font-semibold text-sm sm:text-base">{cat.name}</h3>
-                    <p className="text-white/70 text-xs mt-0.5">{cat.productCount} products</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4">
+                    <h3 className="text-white font-semibold text-xs md:text-base leading-tight">{cat.name}</h3>
+                    <p className="text-white/70 text-[10px] md:text-xs mt-0.5">{cat.productCount} products</p>
                   </div>
                 </Link>
               </motion.div>
@@ -109,7 +108,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20">
+      <section className="py-10 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
@@ -133,8 +132,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-muted/30">
+      {/* Why Choose Us — desktop only */}
+      <section className="hidden md:block py-20 bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold">Why Choose {SITE_CONFIG.name}?</h2>

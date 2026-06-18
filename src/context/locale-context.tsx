@@ -48,15 +48,17 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
+      // Default immediately so the UI never blocks on geo lookup
+      setDetecting(false);
+
       try {
-        const res = await fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout(4000) });
+        const res = await fetch("https://ipapi.co/json/", { signal: AbortSignal.timeout(3000) });
         if (res.ok) {
           const data = await res.json();
           const code = currencyFromCountry(data.country_code || "RW");
           setCurrencyState(code);
           setCountry(data.country_name || "Rwanda");
           setCountryCode(data.country_code || "RW");
-          setDetecting(false);
           return;
         }
       } catch {
@@ -68,7 +70,6 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
       setCurrencyState(code);
       setCountry(code === "RWF" ? "Rwanda" : code === "KES" ? "Kenya" : "International");
       setCountryCode(code === "RWF" ? "RW" : "");
-      setDetecting(false);
     }
 
     detectLocation();
